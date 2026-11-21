@@ -1,0 +1,28 @@
+.git
+.local
+CLAUDE.local.md
+.claude
+.codex
+.agents
+.DS_Store
+.idea
+.vscode
+**/*.log
+
+# Secrets (keep in sync with .gitignore)
+**/.env
+**/.env.*
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+**/id_rsa*
+.envrc
+
+# Repo tooling and docs, not needed in images
+.github
+docs
+envs
+compose*.yaml
+Makefile
+*.md

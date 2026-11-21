@@ -1,0 +1,4 @@
+# Project-level Codex config. Rules live in AGENTS.md.
+# Applied only when the project is trusted in Codex.
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"

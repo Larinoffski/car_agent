@@ -1,0 +1,5 @@
+# Base services shared by all environments.
+# Run via make: compose.yaml + compose.$(ENV).yaml.
+name: car_agent
+
+services: {}

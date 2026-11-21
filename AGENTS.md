@@ -1,0 +1,37 @@
+# AGENTS.md
+
+Guidance for AI coding agents (Claude Code, Codex, Cursor) and humans working in this repository.
+
+## Overview
+
+TBD: one-paragraph project description.
+
+## Commands
+
+Everything runs in Docker. Nothing is installed on the host: no language runtimes, package managers or build tools.
+
+- Run commands via `make <target>` or `docker compose exec app <cmd>`.
+- `make help` lists the available targets.
+
+## Project structure
+
+TBD
+
+## Conventions
+
+- Everything committed to the repo is in English: code, comments, commit messages, docs.
+- A new file follows the pattern of its neighbours: structure, naming scheme, headings. File names without spaces.
+- DRY: information lives in one place.
+- Follow `CONTRIBUTING.md`: commit messages, branches, PRs.
+- Architecture decisions are recorded in `docs/adr/` (copy `docs/adr/template.md`).
+
+## Testing
+
+- Test first: write a failing test, then the code that makes it pass.
+- Run tests via `make test`.
+- TBD: test layout and tooling once the stack is configured.
+
+## Security
+
+- Never read or print secrets: `~/.config/car_agent/` (local secrets), `.env`, `.env.*`.
+- TBD
