@@ -21,7 +21,10 @@ TBD
 
 - Everything committed to the repo is in English: code, comments, commit messages, docs.
 - A new file follows the pattern of its neighbours: structure, naming scheme, headings. File names without spaces.
-- DRY: information lives in one place.
+- DRY: knowledge lives in one place; similar-looking code is not duplication by itself.
+- Simplest code that passes the tests; no abstraction, option or layer without a current use.
+- An interface only where there are two implementations or a deliberate swap point recorded in an ADR.
+- One class, one responsibility; depend on contracts bound in the container, not on concrete classes.
 - Follow `CONTRIBUTING.md`: commit messages, branches, PRs.
 - Architecture decisions are recorded in `docs/adr/` (copy `docs/adr/template.md`).
 
