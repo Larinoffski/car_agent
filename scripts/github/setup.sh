@@ -10,6 +10,9 @@
 # Required status checks are listed in ruleset-main.json; a check can be added only after it has run once.
 set -euo pipefail
 
+# Print API output directly instead of through a pager.
+export GH_PAGER=cat
+
 dir=$(cd "$(dirname "$0")" && pwd)
 api_version=2026-03-10
 
