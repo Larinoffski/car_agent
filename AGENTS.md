@@ -33,5 +33,5 @@ TBD
 
 ## Security
 
-- Never read or print secrets: `~/.config/car_agent/` (local secrets), `.env`, `.env.*`.
+- Never read, print or edit environment files: `~/.config/car_agent/` (local secrets), `.env`, `.env.*`, `envs/*.env`. Propose the variables and where they go; a human edits the files. `*.example` templates are fine to read and edit.
 - TBD

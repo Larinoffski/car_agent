@@ -40,6 +40,8 @@ Refs: PROJ-123
 
 ## Branches
 
+`main` is protected: no direct pushes, every change lands through a PR from a branch.
+
 `<type>/<task-id>-<short-description>`, lowercase except the task id, words separated by hyphens:
 
 ```
