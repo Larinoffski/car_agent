@@ -1,2 +1,9 @@
-# Overlay for ENV=test. Test run.
-services: {}
+# Overlay for ENV=test. Test run; CI uses it too.
+services:
+  app:
+    env_file:
+      - envs/test.env
+      - path: ${SECRETS_DIR}/test.env
+        required: false
+    volumes:
+      - .:/var/www/html

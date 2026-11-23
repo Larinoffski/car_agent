@@ -2,4 +2,39 @@
 # Run via make: compose.yaml + compose.$(ENV).yaml.
 name: car_agent
 
-services: {}
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+      target: ${APP_RUNTIME:-fpm}-dev
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  nginx:
+    image: nginx:1.30.7
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - app
+
+  postgres:
+    image: pgvector/pgvector:0.8.7-pg18-trixie
+    environment:
+      POSTGRES_DB: ${DB_DATABASE:-}
+      POSTGRES_USER: ${DB_USERNAME:-}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-}
+    volumes:
+      # PostgreSQL 18 keeps data under /var/lib/postgresql/<major>/, so the volume is mounted one level up.
+      - pgdata:/var/lib/postgresql
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      # TCP, not the unix socket: during first-start init the server listens on the socket only.
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  pgdata:

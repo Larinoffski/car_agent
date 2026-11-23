@@ -1,2 +1,9 @@
 # Overlay for ENV=production. Deployed environment. Secrets come from the platform, not files.
-services: {}
+services:
+  app:
+    build:
+      target: ${APP_RUNTIME:-fpm}-prod
+    env_file:
+      - envs/production.env
+      - path: ${SECRETS_DIR}/production.env
+        required: false

@@ -1,2 +1,9 @@
 # Overlay for ENV=staging. Deployed environment. Secrets come from the platform, not files.
-services: {}
+services:
+  app:
+    build:
+      target: ${APP_RUNTIME:-fpm}-prod
+    env_file:
+      - envs/staging.env
+      - path: ${SECRETS_DIR}/staging.env
+        required: false
