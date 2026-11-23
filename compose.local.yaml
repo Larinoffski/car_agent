@@ -1,2 +1,30 @@
 # Overlay for ENV=local. Local development.
-services: {}
+services:
+  app:
+    env_file:
+      - envs/local.env
+      - path: ${SECRETS_DIR}/local.env
+        required: false
+    environment:
+      XDEBUG_MODE: ${XDEBUG_MODE:-off}
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    volumes:
+      - .:/var/www/html
+
+  nginx:
+    ports:
+      - 127.0.0.1:8080:80
+
+  postgres:
+    ports:
+      - 127.0.0.1:5432:5432
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui:v5.35.1
+    environment:
+      SWAGGER_JSON: /openapi/openapi.yaml
+    volumes:
+      - ./openapi:/openapi:ro
+    ports:
+      - 127.0.0.1:8081:8080

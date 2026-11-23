@@ -24,3 +24,11 @@ Thumbs.db
 *.pfx
 id_rsa*
 .envrc
+
+# Laravel
+/vendor
+/public/storage
+/storage/pail
+/.phpunit.cache
+.phpunit.result.cache
+/auth.json

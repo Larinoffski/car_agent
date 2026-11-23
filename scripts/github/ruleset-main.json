@@ -32,7 +32,6 @@
           { "context": "pr-title" },
           { "context": "compose (local)" },
           { "context": "compose (test)" },
-          { "context": "compose (ci)" },
           { "context": "compose (staging)" },
           { "context": "compose (production)" }
         ]

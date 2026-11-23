@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        env: [local, test, ci, staging, production]
+        env: [local, test, staging, production]
     steps:
       - uses: actions/checkout@v7
         with:
@@ -76,4 +76,4 @@ jobs:
   #   runs-on: ubuntu-latest
   #   steps:
   #     - uses: actions/checkout@v7
-  #     - run: make test ENV=ci
+  #     - run: make test ENV=test

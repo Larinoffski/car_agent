@@ -9,6 +9,18 @@ CLAUDE.local.md
 .vscode
 **/*.log
 
+# Dependencies and runtime files, rebuilt inside the image
+vendor
+node_modules
+.phpunit.cache
+bootstrap/cache/*.php
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/testing
+storage/framework/views/*
+!storage/**/.gitignore
+
 # Secrets (keep in sync with .gitignore)
 **/.env
 **/.env.*
@@ -26,3 +38,11 @@ envs
 compose*.yaml
 Makefile
 *.md
+.editorconfig
+.gitattributes
+docker/nginx
+docker/postgres
+openapi
+phpunit.xml
+scripts
+tests
