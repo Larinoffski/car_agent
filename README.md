@@ -22,7 +22,12 @@ TBD
 
 ## Development
 
-TBD
+```sh
+make test                          # all tests; the stack must be up
+make test ARGS="--filter=Health"   # tests matching a name
+```
+
+Tests use Pest and run inside the `app` container against a separate database, `car_agent_test`. It is created next to the main one when the Postgres volume is first initialised; `tests/TestCase.php` refuses to run against any database whose name does not end in `_test`.
 
 ## Contributing
 

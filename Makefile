@@ -39,8 +39,8 @@ artisan: ## Run an artisan command: make artisan CMD="route:list"
 composer: ## Run a Composer command: make composer CMD="require vendor/package"
 	$(COMPOSE) run --rm --no-deps app composer $(CMD)
 
-test: ## Run tests
-	@echo "test: not configured yet" >&2; exit 1
+test: ## Run tests (stack must be up): make test ARGS="--filter=Health"
+	$(COMPOSE) exec app vendor/bin/pest $(ARGS)
 
 lint: ## Run linters and static analysis
 	@echo "lint: not configured yet" >&2; exit 1

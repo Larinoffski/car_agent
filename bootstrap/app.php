@@ -15,4 +15,8 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
-    })->create();
+    })->create()
+    // Configuration comes from the container environment; there is no dotenv file (ADR 0004).
+    // Pointing the loader at an empty file avoids a failed read on every start.
+    ->useEnvironmentPath('/dev')
+    ->loadEnvironmentFrom('null');
