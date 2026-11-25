@@ -12,6 +12,9 @@ Everything runs in Docker. Nothing is installed on the host: no language runtime
 
 - Run commands via `make <target>` or `docker compose exec app <cmd>`.
 - `make help` lists the available targets.
+- `make lint` (Pint check and PHPStan) must pass before a change is reported as done; `make format` formats code.
+- PHPStan runs at level 10 on `app`, `database` and `routes`. Do not lower the level, add ignores or a baseline without asking.
+- `make psalm` is a second, advisory analyser; its findings do not block a merge.
 
 ## Project structure
 
@@ -28,6 +31,11 @@ TBD
 - Follow `CONTRIBUTING.md`: commit messages, branches, PRs.
 - Architecture decisions are recorded in `docs/adr/` (copy `docs/adr/template.md`).
 
+## Communicating with the developer
+
+- Call files, jobs and tools by their real names and paths: `.github/workflows/ci.yml`, the `compose` job, `make config` — never "the YAML", "the workflow file" or other improvised shorthand.
+- Do not invent new names for existing things; use the names already present in the repo. When referring to a construct for the first time, name the file and line or section it lives in.
+
 ## Testing
 
 - Test first: write a failing test, then the code that makes it pass.
@@ -38,5 +46,5 @@ TBD
 
 ## Security
 
-- Never read, print or edit environment files: `~/.config/car_agent/` (local secrets), `.env`, `.env.*`, `envs/*.env`. Propose the variables and where they go; a human edits the files. `*.example` templates are fine to read and edit.
+- Never read, print or edit secrets: `envs/secrets/` (local secrets), `.env`, `.env.*`. Committed `envs/<env>.env` files may be read; edit one only with the developer's explicit permission, asked for per change. `*.example` templates are fine to read and edit.
 - TBD

@@ -2,8 +2,11 @@
 services:
   app:
     build:
-      target: ${APP_RUNTIME:-fpm}-prod
+      target: ${APP_RUNTIME:?}-prod
     env_file:
       - envs/staging.env
-      - path: ${SECRETS_DIR}/staging.env
+      - path: ${SECRETS_DIR:?}/staging.env
         required: false
+    environment:
+      # Explicit so compose checks it: values coming only through env_file are not validated.
+      APP_KEY: ${APP_KEY:?}

@@ -1,0 +1,13 @@
+#!/bin/sh
+# Enabled once per clone by `make hooks`. Skip for a single commit: git commit --no-verify.
+# Formats the staged PHP files and stages them again (whole files), then runs the checks.
+set -e
+
+files=$(git diff --cached --name-only --diff-filter=ACMR -- '*.php' | tr '\n' ' ')
+if [ -n "$files" ]; then
+	make format FILES="$files"
+	# shellcheck disable=SC2086 # one argument per file; file names have no spaces
+	git add -- $files
+fi
+
+exec make lint

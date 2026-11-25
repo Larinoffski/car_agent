@@ -3,9 +3,11 @@ services:
   app:
     env_file:
       - envs/local.env
-      - path: ${SECRETS_DIR}/local.env
+      - path: ${SECRETS_DIR:?}/local.env
         required: false
     environment:
+      # Explicit so compose checks it: values coming only through env_file are not validated.
+      APP_KEY: ${APP_KEY:?}
       XDEBUG_MODE: ${XDEBUG_MODE:-off}
     extra_hosts:
       - host.docker.internal:host-gateway

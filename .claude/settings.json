@@ -8,10 +8,9 @@
       "Bash(git log:*)"
     ],
     "deny": [
-      "Read(~/.config/car_agent/**)",
+      "Read(./envs/secrets/**)",
       "Read(./.env)",
-      "Read(./.env.*)",
-      "Read(./envs/*.env)"
+      "Read(./.env.*)"
     ]
   },
   "hooks": {

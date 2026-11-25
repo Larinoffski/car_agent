@@ -4,14 +4,15 @@ Per-environment configuration. Files here are committed and contain no secrets.
 
 | File | Purpose |
 |---|---|
-| `secrets.env.example` | Template for a secrets file (outside the repo) |
+| `secrets.env.example` | Template for a secrets file in `secrets/` |
+| `secrets/` | Local secrets, ignored by git (only `.gitkeep` is tracked) |
 | `local.env` | Local development |
 | `test.env` | Test run; CI uses it too |
 | `staging.env`, `production.env` | Deployed environments |
 
 ## Secrets
 
-- `local`: `$(SECRETS_DIR)/local.env`, outside the repo. `SECRETS_DIR` defaults to `~/.config/car_agent`. Start from `secrets.env.example`.
+- `local`: `$(SECRETS_DIR)/local.env`, inside the repo but ignored by git. `SECRETS_DIR` defaults to `envs/secrets`. Start from `secrets.env.example`.
 - `test`: no secrets; external services are stubbed. The database is disposable, so its password sits in `envs/test.env`. CI secrets, if needed, come from GitHub Secrets.
 - `staging`, `production`: injected at deploy time from the platform secret store. No secret files on disk. A local run of the prod image may read `$(SECRETS_DIR)/<env>.env`.
 
@@ -23,7 +24,7 @@ Per-environment configuration. Files here are committed and contain no secrets.
 make <target> ENV=<env>          (default: local)
    │
    ├── envs/<env>.env                  required, in git, non-secret
-   └── $(SECRETS_DIR)/<env>.env        optional, outside git, secrets
+   └── $(SECRETS_DIR)/<env>.env        optional, in the repo but ignored by git, secrets
           │
           ├──▶ docker compose --env-file   → ${VAR} in compose files (postgres gets POSTGRES_* from DB_*)
           └──▶ app env_file                → container environment → php-fpm (clear_env = no) → env()
@@ -35,8 +36,7 @@ There is no `.env` in the application root.
 
 1. Copy the secrets template:
    ```sh
-   mkdir -p ~/.config/car_agent
-   cp envs/secrets.env.example ~/.config/car_agent/local.env
+   cp envs/secrets.env.example envs/secrets/local.env
    ```
 2. Fill in the secrets:
 

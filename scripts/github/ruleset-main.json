@@ -30,10 +30,11 @@
         "required_status_checks": [
           { "context": "secrets" },
           { "context": "pr-title" },
-          { "context": "compose (local)" },
           { "context": "compose (test)" },
           { "context": "compose (staging)" },
-          { "context": "compose (production)" }
+          { "context": "compose (production)" },
+          { "context": "test" },
+          { "context": "lint" }
         ]
       }
     }
