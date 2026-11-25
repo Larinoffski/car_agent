@@ -7,7 +7,7 @@ services:
     build:
       context: .
       dockerfile: docker/php/Dockerfile
-      target: ${APP_RUNTIME:-fpm}-dev
+      target: ${APP_RUNTIME:?}-dev
     depends_on:
       postgres:
         condition: service_healthy
@@ -22,9 +22,9 @@ services:
   postgres:
     image: pgvector/pgvector:0.8.7-pg18-trixie
     environment:
-      POSTGRES_DB: ${DB_DATABASE:-}
-      POSTGRES_USER: ${DB_USERNAME:-}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-}
+      POSTGRES_DB: ${DB_DATABASE:?}
+      POSTGRES_USER: ${DB_USERNAME:?}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?}
     volumes:
       # PostgreSQL 18 keeps data under /var/lib/postgresql/<major>/, so the volume is mounted one level up.
       - pgdata:/var/lib/postgresql

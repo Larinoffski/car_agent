@@ -7,8 +7,7 @@ Short description of the project.
 Prerequisites: Docker with Compose 2.24 or newer, `make`.
 
 ```sh
-mkdir -p ~/.config/car_agent
-cp envs/secrets.env.example ~/.config/car_agent/local.env   # fill in local secrets
+cp envs/secrets.env.example envs/secrets/local.env   # fill in local secrets
 make build
 make composer CMD=install
 make up

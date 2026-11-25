@@ -31,6 +31,11 @@ TBD
 - Follow `CONTRIBUTING.md`: commit messages, branches, PRs.
 - Architecture decisions are recorded in `docs/adr/` (copy `docs/adr/template.md`).
 
+## Communicating with the developer
+
+- Call files, jobs and tools by their real names and paths: `.github/workflows/ci.yml`, the `compose` job, `make config` — never "the YAML", "the workflow file" or other improvised shorthand.
+- Do not invent new names for existing things; use the names already present in the repo. When referring to a construct for the first time, name the file and line or section it lives in.
+
 ## Testing
 
 - Test first: write a failing test, then the code that makes it pass.
@@ -41,5 +46,5 @@ TBD
 
 ## Security
 
-- Never read, print or edit environment files: `envs/secrets/` (local secrets), `.env`, `.env.*`, `envs/*.env`. Propose the variables and where they go; a human edits the files. `*.example` templates are fine to read and edit.
+- Never read, print or edit secrets: `envs/secrets/` (local secrets), `.env`, `.env.*`. Committed `envs/<env>.env` files may be read; edit one only with the developer's explicit permission, asked for per change. `*.example` templates are fine to read and edit.
 - TBD

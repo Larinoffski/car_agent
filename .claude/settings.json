@@ -10,8 +10,7 @@
     "deny": [
       "Read(./envs/secrets/**)",
       "Read(./.env)",
-      "Read(./.env.*)",
-      "Read(./envs/*.env)"
+      "Read(./.env.*)"
     ]
   },
   "hooks": {
