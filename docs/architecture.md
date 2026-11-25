@@ -49,7 +49,7 @@ TODO
 `make <target> ENV=<env>` runs `compose.yaml` + `compose.<env>.yaml`.
 
 ```
-compose.yaml          app, nginx, postgres (healthcheck, pgdata volume, init.sql: CREATE EXTENSION vector)
+compose.yaml          app, nginx, postgres (healthcheck, pgdata volume, init.sql: vector extension, test database)
   + compose.local.yaml        dev target, code mount, ports on 127.0.0.1, Xdebug switch, swagger-ui
   + compose.test.yaml         dev target, code mount, no ports; CI uses it too
   + compose.staging.yaml      prod target
@@ -63,6 +63,8 @@ compose.yaml          app, nginx, postgres (healthcheck, pgdata volume, init.sql
 | 5432 | postgres |
 
 Xdebug: off by default, `make up XDEBUG_MODE=debug` turns it on.
+
+Tests: `make test` runs Pest in the `app` container of the running stack. Locally that is the `local` stack with the settings in `phpunit.xml` switching the application to `testing` and to the `car_agent_test` database in the same Postgres container (ADR 0006); CI runs the `test` environment, where that database is the only one.
 
 ## Configuration
 

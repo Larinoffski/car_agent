@@ -65,15 +65,22 @@ jobs:
           subjectPattern: ^(?![A-Z]).{1,72}$
           subjectPatternError: The subject must start with a lowercase letter and be at most 72 characters.
 
-  # TODO: enable once the stack is configured (make lint / make test are stubs that exit 1).
+  test:
+    if: github.event.action != 'edited'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - run: make build ENV=test
+      - run: make composer ENV=test CMD=install
+      - run: make up ENV=test
+      - run: make test ENV=test
+
+  # TODO: enable once make lint is configured (it is a stub that exits 1).
   # lint:
   #   runs-on: ubuntu-latest
   #   steps:
   #     - uses: actions/checkout@v7
   #     - run: make lint
-  #
-  # test:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v7
-  #     - run: make test ENV=test

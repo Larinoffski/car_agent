@@ -31,8 +31,10 @@ TBD
 ## Testing
 
 - Test first: write a failing test, then the code that makes it pass.
-- Run tests via `make test`.
-- TBD: test layout and tooling once the stack is configured.
+- Run tests via `make test` (the stack must be up); a subset: `make test ARGS="--filter=Name"`.
+- Tests are written with Pest. `tests/Feature` holds tests that boot the application (bound to `Tests\TestCase` in `tests/Pest.php`); `tests/Unit` holds tests that need no framework.
+- Tests run against the `car_agent_test` database. `tests/TestCase.php` refuses any database whose name does not end in `_test`; do not weaken that check.
+- Settings that switch the local stack into test mode live in `phpunit.xml` as `<server>` entries, not `<env>`.
 
 ## Security
 
