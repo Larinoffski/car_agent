@@ -33,7 +33,9 @@
           { "context": "compose (local)" },
           { "context": "compose (test)" },
           { "context": "compose (staging)" },
-          { "context": "compose (production)" }
+          { "context": "compose (production)" },
+          { "context": "test" },
+          { "context": "lint" }
         ]
       }
     }

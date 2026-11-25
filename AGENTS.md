@@ -12,6 +12,9 @@ Everything runs in Docker. Nothing is installed on the host: no language runtime
 
 - Run commands via `make <target>` or `docker compose exec app <cmd>`.
 - `make help` lists the available targets.
+- `make lint` (Pint check and PHPStan) must pass before a change is reported as done; `make format` formats code.
+- PHPStan runs at level 10 on `app`, `database` and `routes`. Do not lower the level, add ignores or a baseline without asking.
+- `make psalm` is a second, advisory analyser; its findings do not block a merge.
 
 ## Project structure
 

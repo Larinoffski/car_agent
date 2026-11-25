@@ -33,6 +33,7 @@ storage/framework/views/*
 
 # Repo tooling and docs, not needed in images
 .github
+.githooks
 docs
 envs
 compose*.yaml
@@ -44,5 +45,7 @@ docker/nginx
 docker/postgres
 openapi
 phpunit.xml
+phpstan.neon
+psalm.xml
 scripts
 tests

@@ -51,6 +51,10 @@ fix/42-expired-refresh-token
 
 `type` is one of the commit types above. Without a task, omit the id: `chore/update-editorconfig`.
 
+One feature, one branch, one PR. Work that depends on an unmerged branch starts from that branch and is rebased onto `main` once it is merged.
+
+`make hooks` (once per clone) enables the pre-commit hook: it formats the staged PHP files, stages them again as whole files, then runs `make lint`. After a PR is merged, `make sync` updates `main` and deletes local branches whose remote branch is gone.
+
 ## Pull requests
 
 - PRs are squash-merged; the PR title becomes the commit message, so it follows the commit message format.
