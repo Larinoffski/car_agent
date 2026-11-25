@@ -1,5 +1,5 @@
 ENV = local
-SECRETS_DIR ?= $(HOME)/.config/car_agent
+SECRETS_DIR ?= envs/secrets
 SECRETS_FILE := $(SECRETS_DIR)/$(ENV).env
 export SECRETS_DIR
 

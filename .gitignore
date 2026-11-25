@@ -16,6 +16,8 @@ Thumbs.db
 *.log
 
 # Secrets (keep in sync with .dockerignore)
+envs/secrets/*
+!envs/secrets/.gitkeep
 .env
 .env.*
 *.pem

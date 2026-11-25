@@ -19,10 +19,10 @@ case "$tool" in
   *) exit 0 ;;
 esac
 
-# Secrets: local secrets dir, .env files and envs/*.env (except *.env.example), private keys.
+# Secrets: envs/secrets/ dir, .env files and envs/*.env (except *.env.example), private keys.
 # A boundary is any character that cannot be part of a file name.
 b='[^A-Za-z0-9_.-]'
-secrets="(\.config/car_agent|(^|$b)\.env(\.[A-Za-z0-9_-]+)?(\$|$b)|envs/[A-Za-z0-9_.*-]*\.env(\$|$b)|\.(pem|key)(\$|$b))"
+secrets="(envs/secrets/|(^|$b)\.env(\.[A-Za-z0-9_-]+)?(\$|$b)|envs/[A-Za-z0-9_.*-]*\.env(\$|$b)|\.(pem|key)(\$|$b))"
 
 if [[ "${target//.env.example/}" =~ $secrets ]]; then
   block "access to secrets is not allowed"

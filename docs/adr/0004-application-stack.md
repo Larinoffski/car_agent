@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted
+Superseded by 0015, 0016, 0017, 0018, 0019, 0020, 0021
 
 ## Date
 
