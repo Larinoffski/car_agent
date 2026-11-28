@@ -23,7 +23,7 @@ services:
       - 127.0.0.1:5432:5432
 
   swagger-ui:
-    image: swaggerapi/swagger-ui:v5.35.1
+    image: swaggerapi/swagger-ui:v5.36.0
     environment:
       SWAGGER_JSON: /openapi/openapi.yaml
     volumes:
